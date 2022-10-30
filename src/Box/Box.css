@@ -1,0 +1,41 @@
+.orangeBox{
+    background-color: #b58763;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.creamBox{
+    background-color: #C4AE78;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.bishop{
+    width: 5vh;
+}
+.rook{
+    width: 6vh;
+}
+.knight{
+    width: 6vh;
+}
+.king{
+    width: 7vh;
+}
+.queen{
+    width: 8vh;
+}
+.pawn{
+    width: 4.5vh;
+}
+.glow{
+    border: 2px solid black;
+    opacity: 0.8;
+}

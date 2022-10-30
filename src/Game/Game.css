@@ -1,0 +1,57 @@
+.row{
+    display: flex;
+}
+.rows{
+    margin-top: 50px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.btn{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+}
+.users{
+	display: flex;
+	flex-direction: column;
+	width: 30vh;
+	height: 65vh;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+.user-box{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 46%;
+	box-sizing: border-box;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;;
+	margin: 4%;
+	background-color: rgb(143, 143, 143);
+}
+.profile-box{
+	display: block;
+	width: 80%;
+	height: 70%;
+	margin: auto;
+	margin-top: 20px;
+	border-radius: 20%;
+}
+.profile-pic{
+	width: 60%;
+	margin: 13px;
+}
+.white{
+	background-color: white;
+	border: 1px solid black;
+}
+.black{
+	background-color: black;
+	border: 1px solid white;
+}
+.player-name{
+	margin: 10px;
+	color: white;
+}
