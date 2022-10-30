@@ -41,7 +41,7 @@ const ModalComponent = (props) => {
         }
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.onHide}>Close</Button>
+        <Button variant="secondary" onClick={props.onHide} style={{}}>Close</Button>
         <Button variant="primary">Save changes</Button>
       </Modal.Footer>
     </Modal>
