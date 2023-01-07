@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Bishop from "./Images/bishop.svg";
@@ -10,6 +11,8 @@ import QueenW from "./Images/queenW.svg";
 import RookW from "./Images/rookW.svg";
 
 const ModalComponent = (props) => {
+
+  const [selectedPiece, setSelectedPiece] = useState("")
   return (
     <Modal
       {...props}
@@ -26,10 +29,10 @@ const ModalComponent = (props) => {
         <h4>You can promote your pawn to either of the following:</h4>
         {!props.active ? 
         <div style={{display: "flex", justifyContent: "space-evenly"}}>
-          <img src={Queen} alt="piece" style={{width: "100px", padding: "5px 22px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={Rook} alt="piece" style={{width: "100px", padding: "5px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={Bishop} alt="piece" style={{width: "100px", padding: "5px 32px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={Knight} alt="piece" style={{width: "100px", padding: "5px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
+          <img src={Queen} alt="piece" style={{width: "100px", padding: "5px 22px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> setSelectedPiece("Queen")}/>
+          <img src={Rook} alt="piece" style={{width: "100px", padding: "5px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> setSelectedPiece("Rook")}/>
+          <img src={Bishop} alt="piece" style={{width: "100px", padding: "5px 32px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> setSelectedPiece("Bishop")}/>
+          <img src={Knight} alt="piece" style={{width: "100px", padding: "5px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> setSelectedPiece("Knight")}/>
         </div>
         :
         <div style={{display: "flex", justifyContent: "space-evenly"}}>
@@ -41,8 +44,8 @@ const ModalComponent = (props) => {
         }
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.onHide} style={{}}>Close</Button>
-        <Button variant="primary">Save changes</Button>
+        <Button variant="secondary" onClick={props.onHide} style={{}}>No</Button>
+        <Button variant="primary">Yes</Button>
       </Modal.Footer>
     </Modal>
   );

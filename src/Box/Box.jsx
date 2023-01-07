@@ -15,9 +15,9 @@ import RookW from "../Images/rookW.svg";
 import ModalComponent from '../ModalComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Box = ({r, c, fen, viableMoves, active}) => {
+const Box = ({r, c, fen, viableMoves, active, showModal}) => {
     const [glow, setGlow] = useState(false);
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(showModal);
 
     useEffect(()=> {
         const check = viableMoves.filter(arr => (arr[0] === r && arr[1] === c));
@@ -85,13 +85,10 @@ const Box = ({r, c, fen, viableMoves, active}) => {
             
         }
     })
-    const handleShow = () => {
-        if((!active && fen === "p" && r===6) || (active && r===1 && fen === "P"))
-        setModalShow(true);
-    }
+
     return (
         <>
-            <div className={(r+c)%2==0 ? `creamBox + ${glow ? "glow":""}` : `orangeBox + ${glow ? "glow":""}`} onClick={handleShow}>
+            <div className={(r+c)%2==0 ? `creamBox + ${glow ? "glow":""}` : `orangeBox + ${glow ? "glow":""}`}>
                     {img !== "" && <img src={img} className={clName} alt="piece"/>}
             </div>
             <ModalComponent

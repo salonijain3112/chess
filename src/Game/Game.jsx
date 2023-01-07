@@ -21,6 +21,7 @@ const Game = () => {
     }, [activeRow, activeCol, fen, active]);
 
     const handleClick = useCallback((r, c) => {
+        console.log("row", active, fen[r][c], r)
         if(r === activeRow && c === activeCol) {
             r="";
             c="";
@@ -47,11 +48,26 @@ const Game = () => {
                     Row.map(r => {
                         return <div>
                             {Row.map(c => {
-                            return (
-                            <button onClick={() => handleClick(r,c)} className='btn'>
-                                <Box r={r} c={c} fen={fen[r][c]} viableMoves={arrMoves} active={active}></Box>
-                            </button>)
-                            })}
+                                let showModal = false;
+                                // console.log("row", active, fen[r][c], r)
+                                if((fen[r][c] === "p" && r===7) || (r===0 && fen[r][c] === "P")) {
+                                    showModal=true;
+                                } else {
+                                    showModal=false;
+                                }
+                                return (
+                                <button onClick={() => handleClick(r,c)} className='btn'>
+                                    <Box 
+                                        r={r} 
+                                        c={c} 
+                                        fen={fen[r][c]} 
+                                        viableMoves={arrMoves} 
+                                        active={active}
+                                        showModal={showModal}
+                                    ></Box>
+                                </button>)
+                                })
+                            }
                         </div>
                     })
                 }
