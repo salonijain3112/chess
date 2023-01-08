@@ -12,13 +12,18 @@ import PawnW from "../Images/pawnW.svg";
 import KingW from "../Images/kingW.svg";
 import QueenW from "../Images/queenW.svg";
 import RookW from "../Images/rookW.svg";
-import ModalComponent from '../ModalComponent';
+import ModalComponent from '../Modal/ModalComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Box = ({r, c, fen, viableMoves, active, showModal}) => {
+const Box = ({r, c, fen, viableMoves, active}) => {
     const [glow, setGlow] = useState(false);
-    const [modalShow, setModalShow] = useState(showModal);
+    const [modalShow, setModalShow] = useState(false);
 
+    useEffect(() => {
+        if((fen[r][c] === "p" && r===7) || (r===0 && fen[r][c] === "P")) {
+            setModalShow(true);
+        }
+    }, [active, fen, c, r]);
     useEffect(()=> {
         const check = viableMoves.filter(arr => (arr[0] === r && arr[1] === c));
         if(check.length > 0){
@@ -31,7 +36,7 @@ const Box = ({r, c, fen, viableMoves, active, showModal}) => {
     const [clName, setClassName] = useState("");
 
     useEffect(() => {
-        switch (fen) {
+        switch (fen[r][c]) {
             case "r":
                 setImg(Rook);
                 setClassName("rook");
@@ -95,6 +100,9 @@ const Box = ({r, c, fen, viableMoves, active, showModal}) => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 active={active}
+                fen={fen}
+                r={r}
+                c={c}
             />
         </>
     )

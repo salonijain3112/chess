@@ -12,7 +12,7 @@ const Game = () => {
 
     useEffect(() => {
         if(fen.length === 0){
-            setFen(fenParser("r1b1k1nr/p2p1pNp/n3B3/2pNP2P/r5P1/3P1Q2/P1P1K3/q4rb1"));
+            setFen(fenParser("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"));
         }
     }, [fen]);
     
@@ -21,7 +21,6 @@ const Game = () => {
     }, [activeRow, activeCol, fen, active]);
 
     const handleClick = useCallback((r, c) => {
-        console.log("row", active, fen[r][c], r)
         if(r === activeRow && c === activeCol) {
             r="";
             c="";
@@ -48,22 +47,14 @@ const Game = () => {
                     Row.map(r => {
                         return <div>
                             {Row.map(c => {
-                                let showModal = false;
-                                // console.log("row", active, fen[r][c], r)
-                                if((fen[r][c] === "p" && r===7) || (r===0 && fen[r][c] === "P")) {
-                                    showModal=true;
-                                } else {
-                                    showModal=false;
-                                }
                                 return (
                                 <button onClick={() => handleClick(r,c)} className='btn'>
                                     <Box 
                                         r={r} 
                                         c={c} 
-                                        fen={fen[r][c]} 
+                                        fen={fen} 
                                         viableMoves={arrMoves} 
                                         active={active}
-                                        showModal={showModal}
                                     ></Box>
                                 </button>)
                                 })
