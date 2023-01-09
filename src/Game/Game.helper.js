@@ -195,6 +195,63 @@ const handlePawnMoves = (arr, active, fen, row, col) => {
 
     return arr;
 }
+
+const handleKingMoves = (arr, active, fen, row, col) => {
+    if(active) {
+        if(fen?.[row-1]?.[col-1] === fen?.[row-1]?.[col-1]?.toString().toLowerCase() || fen?.[row-1]?.[col-1] === 0){
+            arr.push([row-1, col-1]);
+        }
+        if(fen?.[row-1]?.[col+1] === fen?.[row-1]?.[col+1]?.toString().toLowerCase() || fen?.[row-1]?.[col+1] === 0){
+            arr.push([row-1, col+1]);
+        }
+        if(fen?.[row+1]?.[col-1] === fen?.[row+1]?.[col-1]?.toString().toLowerCase() || fen?.[row+1]?.[col-1] === 0){
+            arr.push([row+1, col-1]);
+        }
+        if(fen?.[row+1]?.[col+1] === fen?.[row+1]?.[col+1]?.toString().toLowerCase() || fen?.[row+1]?.[col+1] === 0){
+            arr.push([row+1, col+1]);
+        }
+        if(fen?.[row]?.[col+1] === fen?.[row]?.[col+1]?.toString().toLowerCase() || fen?.[row]?.[col+1] === 0){
+            arr.push([row, col+1]);
+        }
+        if(fen?.[row]?.[col-1] === fen?.[row]?.[col-1]?.toString().toLowerCase() || fen?.[row]?.[col-1] === 0){
+            arr.push([row, col-1]);
+        }
+        if(fen?.[row-1]?.[col] === fen?.[row-1]?.[col]?.toString().toLowerCase() || fen?.[row-1]?.[col] === 0){
+            arr.push([row-1, col]);
+        }
+        if(fen?.[row+1]?.[col] === fen?.[row+1]?.[col]?.toString().toLowerCase() || fen?.[row+1]?.[col] === 0){
+            arr.push([row+1, col]);
+        }
+    } else {
+        if(fen?.[row-1]?.[col-1] === fen?.[row-1]?.[col-1]?.toString().toUpperCase() || fen?.[row-1]?.[col-1] === 0){
+            arr.push([row-1, col-1]);
+        }
+        if(fen?.[row-1]?.[col+1] === fen?.[row-1]?.[col+1]?.toString().toUpperCase() || fen?.[row-1]?.[col+1] === 0){
+            arr.push([row-1, col+1]);
+        }
+        if(fen?.[row+1]?.[col-1] === fen?.[row+1]?.[col-1]?.toString().toUpperCase() || fen?.[row+1]?.[col-1] === 0){
+            arr.push([row+1, col-1]);
+        }
+        if(fen?.[row+1]?.[col+1] === fen?.[row+1]?.[col+1]?.toString().toUpperCase() || fen?.[row+1]?.[col+1] === 0){
+            arr.push([row+1, col+1]);
+        }
+        if(fen?.[row]?.[col+1] === fen?.[row]?.[col+1]?.toString().toUpperCase() || fen?.[row]?.[col+1] === 0){
+            arr.push([row, col+1]);
+        }
+        if(fen?.[row]?.[col-1] === fen?.[row]?.[col-1]?.toString().toUpperCase() || fen?.[row]?.[col-1] === 0){
+            arr.push([row, col-1]);
+        }
+        if(fen?.[row-1]?.[col] === fen?.[row-1]?.[col]?.toString().toUpperCase() || fen?.[row-1]?.[col] === 0){
+            arr.push([row-1, col]);
+        }
+        if(fen?.[row+1]?.[col] === fen?.[row+1]?.[col]?.toString().toUpperCase() || fen?.[row+1]?.[col] === 0){
+            arr.push([row+1, col]);
+        }
+    }
+
+    return arr;
+}
+
 export const fenParser = (fen) => {
 
     var arr=Array(8).fill(0).map(row => new Array(8).fill(0));
@@ -268,6 +325,10 @@ export const moves = (row=0, col=0, fen, active) => {
         case "p":
             arr=handlePawnMoves(arr, active, fen, row, col);
             break;
+        case "K":
+            arr=handleKingMoves(arr, active, fen, row, col);
+        case "k":
+            arr=handleKingMoves(arr, active, fen, row, col);
     }
 
     return arr;
