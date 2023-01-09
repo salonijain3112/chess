@@ -62,10 +62,20 @@ const ModalComponent = (props) => {
         </div>
         :
         <div style={{display: "flex", justifyContent: "space-evenly"}}>
-          <img src={QueenW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 20px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={RookW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={BishopW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 32px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
-          <img src={KnightW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 25px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}}/>
+          <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+            <ToggleButton id="tbg-radio-1" value={1}>
+              <img src={QueenW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 22px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={() => handleClick("Q")}/>
+            </ToggleButton>
+            <ToggleButton id="tbg-radio-2" value={2}>
+              <img src={RookW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "7px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> handleClick("R")}/>
+            </ToggleButton>
+            <ToggleButton id="tbg-radio-3" value={3}>
+              <img src={BishopW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "5px 32px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> handleClick("B")}/>
+            </ToggleButton>
+            <ToggleButton id="tbg-radio-4" value={4}>
+              <img src={KnightW} alt="piece" style={{width: "100px", backgroundColor: "black", padding: "7px 30px", cursor: "pointer", border: "2px solid black", borderRadius: "5px"}} onClick={()=> handleClick("N")}/>
+            </ToggleButton>
+          </ToggleButtonGroup>
         </div>
         }
       </Modal.Body>
