@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./Box.css";
+import "../styles/Box.css";
 import Bishop from "../Images/bishop.svg";
 import Knight from "../Images/knight.svg";
 import Pawn from "../Images/pawn.svg";

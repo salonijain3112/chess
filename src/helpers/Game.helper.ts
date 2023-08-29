@@ -275,7 +275,7 @@ export const fenParser = (fen) => {
 }
 
 export const moves = (row=0, col=0, fen, active) => {
-    let arr=[];
+    let arr: any=[];
     arr.push([row, col]);
 
     if(fen?.[row]?.[col] === 0){
@@ -292,43 +292,31 @@ export const moves = (row=0, col=0, fen, active) => {
 
     switch (fen?.[row]?.[col]) {
         case "N":
-            arr = handleKnightMoves(arr, active, fen, row, col);
-            break;
         case "n":
             arr = handleKnightMoves(arr, active, fen, row, col);
             break;
         case "R":
-            arr = handleRookMoves(arr, active, fen, row, col);
-            break;
         case "r":
             arr = handleRookMoves(arr, active, fen, row, col);
             break;
         case "B":
-            arr = handleBishopMoves(arr, active, fen, row, col);
-            break;
         case "b":
             arr = handleBishopMoves(arr, active, fen, row, col);
             break;
         case "Q":
-            let m1 = handleBishopMoves(arr, active, fen, row, col);
-            const m2 = handleRookMoves(arr, active, fen, row, col);
-            arr=m1.concat(m2);
-            break;
         case "q":
             let m3 = handleBishopMoves(arr, active, fen, row, col);
             const m4 = handleRookMoves(arr, active, fen, row, col);
             arr=m3.concat(m4);
             break;
         case "P":
-            arr=handlePawnMoves(arr, active, fen, row, col);
-            break;
         case "p":
             arr=handlePawnMoves(arr, active, fen, row, col);
             break;
         case "K":
-            arr=handleKingMoves(arr, active, fen, row, col);
         case "k":
             arr=handleKingMoves(arr, active, fen, row, col);
+            break;
     }
 
     return arr;

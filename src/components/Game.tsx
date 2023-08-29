@@ -1,24 +1,25 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
-import Box from '../Box';
-import "./Game.css";
+import { useSelector } from "react-redux";
+import Box from "./Box.tsx";
+import "../styles/Game.css";
 
-import {fenParser, moves} from "./Game.helper.js";
+import {fenParser, moves} from "../helpers/Game.helper.ts";
+import { RootState } from '../store';
 
 const Game = () => {
-    const [activeRow, setRow] = useState("");
-    const [activeCol, setCol] = useState("");
-    const [fen, setFen] = useState([]);
+    const [activeRow, setRow] = useState<number>(0);
+    const [activeCol, setCol] = useState<number>(0);
     const [active, setActive] = useState(true);
+    const fen = useSelector((state: RootState) => state.app.fen);
+    const [parsedFen, setParsedFen] = useState<any[][]>([]);
 
     useEffect(() => {
-        if(fen.length === 0){
-            setFen(fenParser("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"));
-        }
-    }, [fen]);
-    
+        setParsedFen(fenParser(fen));
+    }, [fen])
+
     const arrMoves = useMemo(() => {
-        return moves(activeRow, activeCol, fen, active);
-    }, [activeRow, activeCol, fen, active]);
+        return moves(activeRow, activeCol, parsedFen, active);
+    }, [activeRow, activeCol, parsedFen, active]);
 
     const handleClick = useCallback((r, c) => {
         if(r === activeRow && c === activeCol) {
@@ -26,15 +27,15 @@ const Game = () => {
             c="";
         }
         if(arrMoves?.some(a => [r,c].every((v, i) => v === a[i]))){
-            fen[r][c] = fen[activeRow][activeCol];
-            fen[activeRow][activeCol] = 0;
+            parsedFen[r][c] = parsedFen[activeRow][activeCol];
+            parsedFen[activeRow][activeCol] = 0;
             setActive(!active);
         } 
         setRow(r);
         setCol(c);
-    }, [setCol, setRow, setActive, active, arrMoves, fen, activeRow, activeCol]);
+    }, [setCol, setRow, setActive, active, arrMoves, parsedFen, activeRow, activeCol]);
 
-    const Row = [];
+    let Row: any = [];
     for(let i=0; i<8; i++){
         Row[i]=i;
     }
@@ -43,7 +44,7 @@ const Game = () => {
     return (
         <>
             <div className='rows'>
-                {fen.length > 0 &&
+                {parsedFen.length > 0 &&
                     Row.map(r => {
                         return <div>
                             {Row.map(c => {
@@ -52,7 +53,7 @@ const Game = () => {
                                     <Box 
                                         r={r} 
                                         c={c} 
-                                        fen={fen} 
+                                        fen={parsedFen} 
                                         viableMoves={arrMoves} 
                                         active={active}
                                     ></Box>
