@@ -1,5 +1,6 @@
 .row{
     display: flex;
+	background-image: "../Images/chessBG.png";
 }
 .rows{
     margin-top: 50px;
